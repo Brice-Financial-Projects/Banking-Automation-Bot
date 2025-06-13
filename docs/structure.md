@@ -1,52 +1,47 @@
 personal-finance-sync-bot/
 │
-├── .env.example                # Sample environment variables (never commit .env!)
+├── .env.example              # Example environment variables (never commit the real .env!)
 ├── .gitignore
 ├── README.md
 ├── requirements.txt
 │
-├── config/                     # Optional: YAML or Python config files (if needed)
-│   └── settings.yaml
+├── config/                   # Django project package (settings, URLs, WSGI/ASGI)
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
 │
-├── manage.py                   # Django entrypoint
-├── django_app/                 # Django project root
-│   ├── django_app/             # Django settings, wsgi/asgi, urls
-│   │   ├── __init__.py
-│   │   ├── settings.py         # DB, secret keys, installed apps
-│   │   ├── urls.py
-│   │   └── ...
-│   ├── finance/                # Django app for financial logic
-│   │   ├── __init__.py
-│   │   ├── models.py           # Django ORM models
-│   │   ├── views.py
-│   │   ├── admin.py
-│   │   ├── migrations/
-│   │   │   └── __init__.py
-│   │   └── ...
+├── manage.py                 # Django project management script
+│
+├── finance/                  # Your Django app for financial logic
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations/
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── views.py
 │   └── ...
 │
-├── streamlit_app/              # Streamlit MVP
+├── streamlit_app/            # Streamlit MVP app
 │   ├── __init__.py
 │   ├── app.py
-│   ├── utils.py
-│   └── ...
+│   └── utils.py
 │
-├── backend/                    # Shared backend logic
+├── backend/                  # Shared backend logic (optional, reusable modules)
 │   ├── __init__.py
-│   ├── plaid_client.py         # Plaid API integration
-│   ├── categorizer.py          # Expense categorization logic
-│   ├── reporting.py            # Reporting, PDF generation, etc.
-│   ├── db.py                   # DB helper functions (for Streamlit or other scripts)
+│   ├── plaid_client.py       # Plaid API integration
+│   ├── categorizer.py        # Categorization logic
+│   ├── reporting.py          # Report/PDF generation
+│   └── db.py                 # DB helpers for non-Django code
+│
+├── scripts/                  # One-off utility scripts
 │   └── ...
 │
-├── scripts/                    # One-off utility scripts
-│   ├── __init__.py
+├── tests/                    # Project-wide tests (if not in each app)
 │   └── ...
 │
-├── tests/                      # Tests for all major modules
-│   ├── __init__.py
-│   ├── test_backend.py
-│   └── ...
-│
-└── docs/                       # Docs, diagrams, API references
+└── docs/                     # Extra documentation, architecture, diagrams
     └── architecture.md
