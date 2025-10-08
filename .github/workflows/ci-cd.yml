@@ -37,9 +37,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-      - name: Install Ruff linter
-        run: pip install ruff
-      - name: Run Linter
+          pip install ruff pytest pytest-django
+
+      - name: Run Ruff linter
         run: ruff check .
+
       - name: Run Tests
         run: pytest -v --disable-warnings
