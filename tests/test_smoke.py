@@ -7,14 +7,15 @@ from rest_framework.test import APIClient
 def test_register_and_login():
     client = APIClient()
 
-    # register
+    strong_password = "Secur3!Passw0rd"
+
     resp = client.post(
         "/api/auth/register/",
         {
             "email": "user@test.com",
             "username": "user",
-            "password": "pass1234",
-            "password_confirm": "pass1234",  # ✅ must match serializer
+            "password": strong_password,
+            "password_confirm": strong_password,
         },
         format="json"
     )
