@@ -28,6 +28,7 @@ jobs:
       DB_HOST: localhost
       DB_PORT: 5432
 
+
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -37,7 +38,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-      - name: Run Linter
+          pip install ruff pytest pytest-django
+
+      - name: Run Ruff linter
         run: ruff check .
+
       - name: Run Tests
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings
         run: pytest -v --disable-warnings
