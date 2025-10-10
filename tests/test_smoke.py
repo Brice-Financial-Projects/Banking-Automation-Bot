@@ -1,19 +1,23 @@
 """tests/test_smoke.py"""
 
 import pytest
+from rest_framework.test import APIClient
 
-# tests/test_smoke.py
 @pytest.mark.django_db
-def test_register_and_login(client):
+def test_register_and_login():
+    client = APIClient()
+
     # register
     resp = client.post(
         "/api/auth/register/",
         {
             "email": "user@test.com",
+            "username": "user",
             "password": "pass1234",
-            "password2": "pass1234",   # required
-            "username": "user",         # required by AbstractUser
+            "password_confirm": "pass1234",  # ✅ must match serializer
         },
-        content_type="application/json",
+        format="json"
     )
+
+    print("REGISTER RESPONSE:", resp.status_code, resp.json())
     assert resp.status_code == 201
