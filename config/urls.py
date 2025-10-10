@@ -4,10 +4,8 @@ URL configuration for config project.
 config/urls.py
 """
 
-from django.contrib import admin
-from django.urls import path, include
-
 from django.urls import path
+
 from finance import views as finance_views
 
 urlpatterns = [
